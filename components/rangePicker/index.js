@@ -141,7 +141,7 @@ export default class RangePicker {
     date.setDate(1);
 
     // text-transform: capitalize
-    let monthStr = date.toLocaleString('en', {month: 'long'});
+    let monthStr = date.toLocaleString('default', {month: 'long'});
 
     let table = `<div class="rangepicker__calendar">
       <div class="rangepicker__month-indicator">
@@ -216,8 +216,8 @@ export default class RangePicker {
         detail:  this.selected
       }));
       this.close();
-      this.elems.from.innerHTML = this.selected.from.toLocaleString('en', {dateStyle: 'short'});
-      this.elems.to.innerHTML = this.selected.to.toLocaleString('en', {dateStyle: 'short'});
+      this.elems.from.innerHTML = this.selected.from.toLocaleString('default', {dateStyle: 'short'});
+      this.elems.to.innerHTML = this.selected.to.toLocaleString('default', {dateStyle: 'short'});
     }
 
   }
