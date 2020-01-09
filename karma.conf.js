@@ -2,6 +2,7 @@
 // Generated on Sun Nov 26 2017 12:48:45 GMT+0000 (GMT)
 
 const { TRAVIS } = process.env;
+process.env.CHROME_BIN = require('puppeteer').executablePath()
 
 module.exports = function(config) {
   config.set({
@@ -39,7 +40,8 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: [TRAVIS ? 'json' : 'dots'], // progress
+    // reporters: [TRAVIS ? 'json' : 'dots'], // progress
+    reporters: ['dots'], // progress
 
     jsonReporter: {
       stdout: true,
@@ -55,8 +57,8 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
-    // logLevel: config.LOG_DISABLE,
+    // logLevel: config.LOG_DEBUG,
+    logLevel: config.LOG_DISABLE,
 
     browserConsoleLogOptions: {
       terminal: false
@@ -69,8 +71,17 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-    // browsers: ['ChromeHeadless'],
+    // browsers: ['Chrome'],
+    browsers: ['ChromeNoHead'],
+
+    customLaunchers: {
+      ChromeNoHead: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--lang=ru'
+        ]
+      }
+    },
 
 
     // Continuous Integration mode
